@@ -17,8 +17,7 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            label1.Text = NamePairs.LastName;
-            label2.Text = NamePairs.FirstName;
+            label1.Text = NamePairs.FullName;
             button1.Text = NamePairs.Add;
 
             listBox1.DataSource = users;
@@ -31,8 +30,7 @@ namespace WindowsFormsApp1
         {
             var u = new User()
             {
-                FirstName = label2.Text,
-                LastName = label1.Text
+                FullName = textBox1.Text
             };
             users.Add(u);
         }
