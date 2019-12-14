@@ -15,6 +15,10 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
+            label1.Text = NamePairs.LastName;
+            label2.Text = NamePairs.FirstName;
+            button1.Text = NamePairs.Add;
+
         }
     }
 }
