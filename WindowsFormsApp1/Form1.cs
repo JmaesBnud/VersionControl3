@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -17,9 +18,9 @@ namespace WindowsFormsApp1
         public Form1()
         {
             InitializeComponent();
-            label1.Text = NamePairs.LastName;
-            label2.Text = NamePairs.FirstName;
+            label1.Text = NamePairs.FullName;
             button1.Text = NamePairs.Add;
+            button2.Text = NamePairs.SavingFile;
 
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
@@ -31,10 +32,31 @@ namespace WindowsFormsApp1
         {
             var u = new User()
             {
-                FirstName = label2.Text,
-                LastName = label1.Text
+                FullName = textBox1.Text
             };
             users.Add(u);
+        }
+
+        private void Button2_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+
+            sfd.InitialDirectory = Application.StartupPath;
+            sfd.Filter = "Comma Separated Values (*.csv)|*.csv";
+            sfd.DefaultExt = "csv";
+            sfd.AddExtension = true;
+
+            if (sfd.ShowDialog() != DialogResult.OK) return;
+            else
+            {
+                using (StreamWriter sw = new StreamWriter(sfd.FileName))
+                {
+                    foreach (var név in users)
+                    {
+                        sw.WriteLine(név.ID + ";" + név.FullName);
+                    }
+                } 
+            }
         }
     }
 }
