@@ -21,6 +21,7 @@ namespace WindowsFormsApp1
             label1.Text = NamePairs.FullName;
             button1.Text = NamePairs.Add;
             button2.Text = NamePairs.SavingFile;
+            button3.Text = NamePairs.Deleting;
 
             listBox1.DataSource = users;
             listBox1.ValueMember = "ID";
@@ -49,7 +50,7 @@ namespace WindowsFormsApp1
             if (sfd.ShowDialog() != DialogResult.OK) return;
             else
             {
-                using (StreamWriter sw = new StreamWriter(sfd.FileName))
+                using (StreamWriter sw = new StreamWriter(sfd.FileName, false, Encoding.UTF8)) 
                 {
                     foreach (var név in users)
                     {
@@ -57,6 +58,11 @@ namespace WindowsFormsApp1
                     }
                 } 
             }
+        }
+
+        private void Button3_Click(object sender, EventArgs e)
+        {
+            users.Remove((User)listBox1.SelectedItem);
         }
     }
 }

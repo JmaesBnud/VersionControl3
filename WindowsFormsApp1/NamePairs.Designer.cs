@@ -70,6 +70,15 @@ namespace WindowsFormsApp1 {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Törlés.
+        /// </summary>
+        internal static string Deleting {
+            get {
+                return ResourceManager.GetString("Deleting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to TeljesNév.
         /// </summary>
         internal static string FullName {
